@@ -1,0 +1,4 @@
+#! /usr/bin/env sh
+
+python3  /home/camilo/.local/bin/pulse-volume-watcher.py | xob &
+python3  /home/camilo/.local/bin/brightness-watcher.py | xob &

@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+DIR="$HOME/.config/bspwm"
+BSP="$HOME/.config/bspwm/themes"
+
+while :
+do 
+  if [ $? == 0 ]
+  then
+    echo "[Py] Generating colorscheme"
+    wal -i $1
+    echo "[Py] Appling changes"
+    sh ${BSP}/set-theme $1 'pywal' 'oomox-xresources-reverse' 'Win11-Dark' 'Fluent' 
+    break
+  fi
+done
+
+echo "[P] Finish"

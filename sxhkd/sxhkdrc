@@ -9,7 +9,7 @@ super + Return
 
 # Terminal (floating)
 super + shift + Return
-	bspterm -f
+  bspterm -f
 
 ##---------- Rofi Launcher & Menus ----------##
 
@@ -191,8 +191,11 @@ super + shift + Escape
 super + F1
   zathura ~/Desktop/Horario.pdf
 
+super + F2
+  bspterm -e pulsemixer
+
 super + F3
-  /home/camilo/.local/bin/rofi-ytm.sh 
+  setxkbmap {es; notify-send "Keyboard" "Keyboard layout changed to qwerty", dvorak; notify-send "Keyboard" "Keyboard layout changed to dvorak"}
 
 super + F4
   passmenu

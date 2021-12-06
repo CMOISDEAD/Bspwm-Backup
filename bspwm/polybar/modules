@@ -155,7 +155,7 @@ fuzzy-match = true
 
 ; ws-icon-[0-9]+ = label;icon
 ; Note that the label needs to correspond with the bspwm workspace name
-ws-icon-0 = I;
+ws-icon-0 = 1;
 ws-icon-1 = II;
 ws-icon-2 = III;
 ws-icon-3 = IV;
@@ -181,16 +181,16 @@ label-monitor = %name%
 ;label-dimmed-underline = ${color.YELLOW}
 ;label-dimmed-focused-background = ${color.BACKGROUND}
 
-label-focused = %name%
+label-focused =[ %name% ]
 label-focused-foreground = ${color.BLUE}
 label-focused-background = ${color.BACKGROUND}
-label-focused-underline = ${color.BLUE}
+# label-focused-underline = ${color.BLUE}
 label-focused-padding = 1
 
-label-occupied = %name%
+label-occupied = [%name%]
 label-occupied-foreground = ${color.GREEN}
 label-occupied-background = ${color.BACKGROUND}
-;label-occupied-underline = ${color.GREEN}
+# ;label-occupied-underline = ${color.GREEN}
 label-occupied-padding = 1
 
 label-urgent = %name%
@@ -199,12 +199,12 @@ label-urgent-background = ${color.BACKGROUND}
 label-urgent-underline = ${color.RED}
 label-urgent-padding = 1
 
-label-empty = %name%
+label-empty = 
 label-empty-foreground = ${color.FOREGROUND}
 label-empty-padding = 1
 
 ; Separator in between workspaces
-label-separator = "∙"
+label-separator = ""
 label-separator-padding = 0
 label-separator-foreground = ${color.ALTBLACK}
 
@@ -246,6 +246,25 @@ format-prefix-foreground = ${color.RED}
 
 label = %time%
 label-font = 3
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/title]
+type = internal/xwindow
+
+; Available tags:
+;   <label> (default)
+format = <label>
+format-prefix = " "
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = "%title%"
+label-maxlen = 50
+
+; Used instead of label when there is no window title
+label-empty = Camilo 
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 

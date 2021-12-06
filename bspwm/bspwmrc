@@ -26,8 +26,9 @@ getcolors
 workspaces() {
 	name=1
 	for monitor in `bspc query -M`; do
-		bspc monitor ${monitor} -n "$name" -d 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VIII'
-		#bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '' ''
+		bspc monitor ${monitor} -n "$name" -d '0' '1' '10' '11' '100' '101' '110' '111'
+		# bspc monitor ${monitor} -n "$name" -d 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VIII'
+    # bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '' ''
 		let name++
 	done
 }
@@ -56,7 +57,7 @@ bspc rule -r *:*
 # 1 > terminal
 bspc rule -a Alacritty desktop='^3' follow=on focus=on
 bspc rule -a Xfce4-terminal desktop='^3' follow=on focus=on
-# bspc rule -a kitty desktop='^3' follow=on focus=on
+bspc rule -a kitty desktop='^3' follow=on focus=on
 bspc rule -a rofiyt desktop='^5' follow=off focus=off
 
 # 2 > web
@@ -70,7 +71,7 @@ for i in ${files[@]}; do
    bspc rule -a $i desktop='^4' follow=on focus=on; done
 
 # 4 > code
-declare -a code=(Geany code-oss)
+declare -a code=(Geany code-oss jetbrains-idea-ce)
 for i in ${code[@]}; do
    bspc rule -a $i desktop='^2' follow=on focus=on; done
 
@@ -112,12 +113,13 @@ bspc rule -a stalonetray state=floating manage=off
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
-killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager polybar xob greenclip 
+killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager polybar xob greenclip conky 
 
 # Misc
-python3 /home/camilo/.local/bin/pulse-volume-watcher.py | xob -c /home/camilo/.config/xob/styles.cfg &
-python3 /home/camilo/.local/bin/brightness-watcher.py | xob -c /home/camilo/.config/xob/styles.cfg &
-wname LG3D &
+conky -c /home/camilo/.config/conky/conky.conf &
+conky -c /home/camilo/.config/conky/todos.conf &
+setxkbmap es 
+wmname LG3D &
 
 # Lauch notification daemon
 dunst \
@@ -133,7 +135,7 @@ xsettingsd &
 greenclip daemon &
 
 # Launch Emacs daemon
-emacs --daemon &
+# emacs --daemon &
 
 # polkit agent
 if [[ ! `pidof xfce-polkit` ]]; then
@@ -161,7 +163,7 @@ exec mpd &
 
 # Start bspwm scripts
 bspcolors
-# bspbar
-/home/camilo/.config/openbox/polybar/launch.sh
+bspbar
+#/home/camilo/.config/openbox/polybar/launch.sh
 bspcomp
 bspfloat &

@@ -2,7 +2,7 @@
 /* Everyone is permitted to copy and distribute copies of this file under GNU-GPL3 */
 
 configuration {
-    font:                           "Scientifica 11";
+    font:                           "Iosevka 11";
     show-icons:                     false;
     disable-history:                false;
 	click-to-exit: 					true;

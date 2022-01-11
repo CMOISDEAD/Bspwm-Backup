@@ -72,7 +72,7 @@ ramp-foreground = ${color.MAGENTA}
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [module/brightness]
-type = internal/backlight
+type = internal/xbacklight
 
 card = ${system.graphics_card}
 
@@ -181,17 +181,17 @@ label-monitor = %name%
 ;label-dimmed-underline = ${color.YELLOW}
 ;label-dimmed-focused-background = ${color.BACKGROUND}
 
-label-focused =[ %name% ]
-label-focused-foreground = ${color.BLUE}
+label-focused = %name%
+label-focused-foreground = ${color.FOREGROUND}
 label-focused-background = ${color.BACKGROUND}
-# label-focused-underline = ${color.BLUE}
-label-focused-padding = 1
+# label-focused-underline = ${color.FOREGROUND}
+label-focused-padding = 2 
 
-label-occupied = [%name%]
+label-occupied = %name%
 label-occupied-foreground = ${color.GREEN}
 label-occupied-background = ${color.BACKGROUND}
 # ;label-occupied-underline = ${color.GREEN}
-label-occupied-padding = 1
+label-occupied-padding = 2 
 
 label-urgent = %name%
 label-urgent-foreground = ${color.RED}
@@ -200,13 +200,13 @@ label-urgent-underline = ${color.RED}
 label-urgent-padding = 1
 
 label-empty = 
-label-empty-foreground = ${color.FOREGROUND}
+label-empty-foreground = ${color.RED}
 label-empty-padding = 1
 
 ; Separator in between workspaces
-label-separator = ""
-label-separator-padding = 0
-label-separator-foreground = ${color.ALTBLACK}
+# label-separator = " "
+# label-separator-padding = 0
+# label-separator-foreground = ${color.ALTBLACK}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -240,12 +240,10 @@ time = %I:%M %p
 time-alt = %A, %d %B %Y
 
 format = <label>
-format-prefix = " "
-format-prefix-font = 3
-format-prefix-foreground = ${color.RED}
+format-prefix = "  "
+format-prefix-foreground = ${color.MAGENTA}
 
 label = %time%
-label-font = 3
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -255,7 +253,7 @@ type = internal/xwindow
 ; Available tags:
 ;   <label> (default)
 format = <label>
-format-prefix = " "
+format-prefix = "  "
 
 ; Available tokens:
 ;   %title%
@@ -264,7 +262,7 @@ label = "%title%"
 label-maxlen = 50
 
 ; Used instead of label when there is no window title
-label-empty = Camilo 
+label-empty = "" 
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -347,8 +345,15 @@ type = custom/text
 content = ◆
 
 content-background = ${color.BACKGROUND}
-content-foreground = ${color.BLACK}
+content-foreground = ${color.FOREGROUND}
 content-padding = 2
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[module/system-uptime]
+type = custom/script
+format-prefix = "  "
+exec = ~/.config/bspwm/polybar/bin/uptime.sh
+interval = 60
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 ;;	    __________  ______

@@ -15,6 +15,8 @@ elif [ "$1" == "-e" ]; then
   alacritty --config-file "$CONFIG" -e "$2" 
 elif [ "$1" == "-ef" ]; then
   alacritty --class 'alacritty-float,alacritty-float' --config-file "$CONFIG" -e "$2" 
+elif [ "$1" == "-ml" ]; then
+	alacritty --class 'Fullscreen,Fullscreen' --config-file "$CONFIG" -o window.startup_mode=fullscreen window.padding.x=0 window.padding.y=0 font.size=30 -e cmatrix -L
 else
 	alacritty --config-file "$CONFIG"
 fi

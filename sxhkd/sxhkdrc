@@ -1,5 +1,5 @@
 ## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+# Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
 ##---------- Keybindings for bspwm ----------##
 
@@ -39,7 +39,7 @@ super + shift + {f,w,e}
 	{pcmanfm,qutebrowser,nvim}
 
 # Terminal Apps
-ctrl + alt + {v,n,r,h,b}
+ctrl + alt + {n,v,r,h,b}
 	bspterm -e {ncmpcpp,nvim,ranger,htop,bashtop}
 
 # Color Picker
@@ -48,7 +48,7 @@ super + p
 
 # Lockscreen
 ctrl + alt + l
-    bsplock
+   bspterm -ml
 
 ##---------- System Keys ----------##
 
@@ -149,6 +149,14 @@ ctrl + alt + {h,l}
 # Switch to last opened workspace
 super + {Tab,grave}
 	bspc {node,desktop} -f last
+
+# Switch bspwm layouts
+super + shift + Tab
+  bsp-layout cycle --layouts tall,rtall,wide,rwide,grid,rgrid
+
+# Set bpswm layout to tiled
+super + shift + grave
+  bsp-layout set tiled
 
 # Send focused window to another workspace
 super + {_,shift + }{1-8}

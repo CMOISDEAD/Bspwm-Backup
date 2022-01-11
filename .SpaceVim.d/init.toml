@@ -11,19 +11,32 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "jellybeans"
+    colorscheme = "onedark"
     colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_iseparator = "arrow"
-    buffer_index_type = 4
+    statusline_separator = "nil"
+    statusline_iseparator = "nil"
+    buffer_index_type = 3
     enable_tabline_filetype_icon = true
-    enable_statusline_mode = false
+    enable_statusline_mode = true
+    enable_vimfiler_welcome = true
     autocomplete_method = "coc"
+    snippet_engine = "ultisnips"
+    custom_color_palette = [
+        ["#070707", "#ffffff", 246, 235],
+        ["#ffffff", "#202124", 239, 246],
+        ["#ffffff", "#1d1d1d", 237, 246],
+        ["#070707", 241],
+        ["#070707", "#83a598", 235, 109],
+        ["#070707", "#fe8019", 235, 208],
+        ["#070707", "#8ec07c", 235, 108],
+        ["#070707", "#689d6a", 235, 72],
+        ["#070707", "#8f3f71", 235, 132],
+    ]
 
 # Enable core layer
 [[layers]]
@@ -41,10 +54,18 @@ autocomplete_method = "coc"
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
+# Enable search index integration
+[[layers]]
+  name = "incsearch"
+
 [[layers]]
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+# Fuzzy Finder
+[[layers]]
+  name = "fzf"
 
 # Enable langs layers
 [[layers]]
@@ -70,4 +91,16 @@ merged = false
 
 [[custom_plugins]]
 repo = "ryanoasis/vim-devicons"
+merged = false
+
+[[custom_plugins]]
+repo = "junegunn/fzf.vim"
+merged = false
+
+[[custom_plugins]]
+repo = "fxn/vim-monochrome"
+merged = false
+
+[[custom_plugins]]
+repo = "honza/vim-snippets"
 merged = false

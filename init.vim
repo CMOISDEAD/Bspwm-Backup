@@ -14,13 +14,16 @@ func! s:transparent_background()
 endf
 autocmd ColorScheme * call s:transparent_background()
 
+"Clipboar
 set clipboard+=unnamedplus
 
 "" Custom Keybinds uwu
 "Show files in the current dir
-noremap <Space>ff :GFiles <CR>
+noremap <Space>ff :Files <CR>
+"Show lazygit
+nnoremap <Space>gg :LazyGit <CR>
 " Show git files
-noremap <Space>gf :Files <CR>
+noremap <Space>gf :GFiles <CR>
 " Show git status return
 noremap <Space>gF :GFiles? <CR>
 " Show the opens buffers
@@ -55,6 +58,10 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " FZF config  layout
 let g:fzf_layout = { 'down': '10'}
+
+"Indentlines
+let g:indentLine_enabled = 1
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " Main execute SpaceVim
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'

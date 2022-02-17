@@ -1,0 +1,14 @@
+# Function
+snippet exp "React component"
+export const ${1:component_name} = (${2}) => {
+		return(
+			<>
+				${0:${VISUAL}}
+			</>
+		)
+}
+endsnippet
+
+snippet stl "Styled components"
+export const ${1:component_name} = styled.${2:tag}${0:${VISUAL}};
+endsnippet

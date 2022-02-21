@@ -26,8 +26,7 @@ getcolors
 workspaces() {
 	name=1
 	for monitor in `bspc query -M`; do
-		# bspc monitor ${monitor} -n "$name" -d '0' '1' '10' '11' '100' '101' '110' '111'
-    bspc monitor ${monitor} -n "$name" -d 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VIII'
+    bspc monitor ${monitor} -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
     # bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '' ''
 		let name++
 	done
@@ -113,11 +112,12 @@ bspc rule -a stalonetray state=floating manage=off
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
-killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager polybar xob greenclip conky 
+killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager polybar conky 
 
 # Misc
-conky -c /home/camilo/.config/conky/conky.conf &
-conky -c /home/camilo/.config/conky/todos.conf &
+# conky -c ~/.config/conky/conky.conf &
+# xset led 
+
 #setxkbmap es 
 wmname LG3D &
 
@@ -132,8 +132,6 @@ dunst \
 xsettingsd &
 
 # Launch clipboard daemon
-greenclip daemon &
-
 # Launch Emacs daemon
 # emacs --daemon &
 
@@ -163,6 +161,7 @@ exec mpd &
 
 # Start bspwm scripts
 bspcolors
-bspbar
+# bspbar
+~/.config/polybar/launch.sh --forest
 # bspcomp
 bspfloat &

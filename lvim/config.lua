@@ -7,11 +7,12 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+local g = vim.g
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "bluewery"
 
 vim.opt.cmdheight = 1
 vim.opt.relativenumber = true
@@ -20,6 +21,8 @@ vim.cmd([[
   let g:user_emmet_leader_key='<C-Z>'
   let g:gruvbox_contrast_dark='hard'
 ]])
+
+vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -60,7 +63,6 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 --   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 -- }
 
--- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
@@ -144,19 +146,21 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- }
 
 -- Additional Plugins
--- HACK: esto deberia colorearse.
 lvim.plugins = {
-  {"lunarvim/colorschemes"},
-  {"morhetz/gruvbox"},
   {
    "tpope/vim-surround",
     keys = {"c", "d", "y"}
   },
   {"mattn/emmet-vim"},
   {"lukas-reineke/indent-blankline.nvim"},
-  -- {"karb94/neoscroll.nvim"},
   {"norcalli/nvim-colorizer.lua"},
   {"folke/todo-comments.nvim"},
+  {"mg979/vim-visual-multi"},
+  -- Colorschemes
+  {"relastle/bluewery.vim"},
+  {"cocopon/iceberg.vim"},
+  {"lunarvim/colorschemes"},
+  {"morhetz/gruvbox"},
 }
 
 -- indent-blankline
@@ -165,21 +169,6 @@ require("indent_blankline").setup {
   show_current_context = true,
   show_current_context_start = true,
 }
-
--- Neoscroll
--- require('neoscroll').setup({
---   -- All these keys will be mapped to their corresponding default scrolling animation
---   mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
---   '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
---   hide_cursor = true,          -- Hide cursor while scrolling
---   stop_eof = true,             -- Stop at <EOF> when scrolling downwards
---   use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
---   respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
---   cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
---   easing_function = nil,        -- Default easing function
---   pre_hook = nil,              -- Function to run before the scrolling animation starts
---   post_hook = nil,              -- Function to run after the scrolling animation ends
--- })
 
 -- TODO: Colorizer
 require("colorizer").setup({ "*" }, {
@@ -207,6 +196,43 @@ require("todo-comments").setup{
     PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
   },
+}
+
+lvim.builtin.dashboard.custom_header = {
+       "            :h-                                  Nhy`               ",
+       "           -mh.                           h.    `Ndho               ",
+       "           hmh+                          oNm.   oNdhh               ",
+       "          `Nmhd`                        /NNmd  /NNhhd               ",
+       "          -NNhhy                      `hMNmmm`+NNdhhh               ",
+       "          .NNmhhs              ```....`..-:/./mNdhhh+               ",
+       "           mNNdhhh-     `.-::///+++////++//:--.`-/sd`               ",
+       "           oNNNdhhdo..://++//++++++/+++//++///++/-.`                ",
+       "      y.   `mNNNmhhhdy+/++++//+/////++//+++///++////-` `/oos:       ",
+       " .    Nmy:  :NNNNmhhhhdy+/++/+++///:.....--:////+++///:.`:s+        ",
+       " h-   dNmNmy oNNNNNdhhhhy:/+/+++/-         ---:/+++//++//.`         ",
+       " hd+` -NNNy`./dNNNNNhhhh+-://///    -+oo:`  ::-:+////++///:`        ",
+       " /Nmhs+oss-:++/dNNNmhho:--::///    /mmmmmo  ../-///++///////.       ",
+       "  oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.      ",
+       "   /mNNNmdhhhh/://+///::://////     -:::- ..+sy+:////////::/:/.     ",
+       "     /hNNNdhhs--:/+++////++/////.      ..-/yhhs-/////////::/::/`    ",
+       "       .ooo+/-::::/+///////++++//-/ossyyhhhhs/:///////:::/::::/:    ",
+       "       -///:::::::////++///+++/////:/+ooo+/::///////.::://::---+`   ",
+       "       /////+//++++/////+////-..//////////::-:::--`.:///:---:::/:   ",
+       "       //+++//++++++////+++///::--                 .::::-------::   ",
+       "       :/++++///////////++++//////.                -:/:----::../-   ",
+       "       -/++++//++///+//////////////               .::::---:::-.+`   ",
+       "       `////////////////////////////:.            --::-----...-/    ",
+       "        -///://////////////////////::::-..      :-:-:-..-::.`.+`    ",
+       "         :/://///:///::://::://::::::/:::::::-:---::-.-....``/- -   ",
+       "           ::::://::://::::::::::::::----------..-:....`.../- -+oo/ ",
+       "            -/:::-:::::---://:-::-::::----::---.-.......`-/.      ``",
+       "           s-`::--:::------:////----:---.-:::...-.....`./:          ",
+       "          yMNy.`::-.--::..-dmmhhhs-..-.-.......`.....-/:`           ",
+       "         oMNNNh. `-::--...:NNNdhhh/.--.`..``.......:/-              ",
+       "        :dy+:`      .-::-..NNNhhd+``..`...````.-::-`                ",
+       "                        .-:mNdhh:.......--::::-`                    ",
+       "                           yNh/..------..`                          ",
+       "                                                                    ",
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)

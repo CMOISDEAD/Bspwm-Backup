@@ -33,24 +33,25 @@ bspbar () {
 	cat > $DIR/polybar/colors <<- EOF	
 	[color]
 
-	FOREGROUND = ${FOREGROUND}
-	BACKGROUND = ${BACKGROUND}
-	BLACK = ${BLACK}
-	RED = ${RED}
-	GREEN = ${GREEN}
-	YELLOW = ${YELLOW}
-	BLUE = ${BLUE}
-	MAGENTA = ${MAGENTA}
-	CYAN = ${CYAN}
-	WHITE = ${WHITE}
-	ALTBLACK = ${ALTBLACK}
-	ALTRED = ${ALTRED}
-	ALTGREEN = ${ALTGREEN}
-	ALTYELLOW = ${ALTYELLOW}
-	ALTBLUE = ${ALTBLUE}
-	ALTMAGENTA = ${ALTMAGENTA}
-	ALTCYAN = ${ALTCYAN}
-	ALTWHITE = ${ALTWHITE}
+	foreground = ${FOREGROUND}
+	background = ${BACKGROUND}
+	primary = ${FOREGROUND}
+	black = ${BLACK}
+	red = ${ReD}
+	green = ${GREEN}
+	yellow = ${YELLOW}
+	blue = ${BLUE}
+	magenta = ${MAGENTA}
+	cyan = ${CYAN}
+	white = ${WHITE}
+	altblack = ${ALTBLACK}
+	altred = ${ALTRED}
+	altgreen = ${ALTGREEN}
+	altyellow = ${ALTYELLOW}
+	altblue = ${ALTBLUE}
+	altmagenta = ${ALTMAGENTA}
+	altcyan = ${ALTCYAN}
+	altwhite = ${ALTWHITE}
 	EOF
 }
 
@@ -92,10 +93,10 @@ bsprofi () {
 	* {
 		background:			${BACKGROUND};
 		foreground:			${FOREGROUND};
-		selected:			${BLUE};
-		highlight:			${YELLOW};
+		selected:			${FOREGROUND};
+		highlight:			${GREEN};
 		urgent:				${RED};
-		on:					${GREEN};
+		on:				${GREEN};
 		off:				${RED};
 	}
 	EOF

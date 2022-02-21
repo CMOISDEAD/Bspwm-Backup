@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill --randomize /home/camilo/Pictures/kali-wallpapers/2022/backgrounds/kali-16x9/*

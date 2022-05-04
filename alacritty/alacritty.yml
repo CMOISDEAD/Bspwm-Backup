@@ -1,48 +1,82 @@
-## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
-
-## Configuration for Alacritty, the GPU enhanced terminal emulator.
-## It's a very basic and simple config file, for full configuration...
-## See, /usr/share/doc/alacritty/example/alacritty.yml
-
-## Import files (Colors, Fonts, Etc)
-import:
-  - ~/.config/bspwm/alacritty/colors.yml
-  - ~/.config/alacritty/fonts.yml
-
-## Set environment variables
+# DOOM alacritty
+# configuration for alacritty, the GPU enhanced terminal emulator.
 env:
-  TERM: alacritty
-  WINIT_X11_SCALE_FACTOR: '1.0'
+  TERM: xterm-256color
 
-## Terminal window settings
 window:
-  dimensions:
-    columns: 82
-    lines: 25
+  dynamic_padding: true
+  opacity: 0.7
 
   padding:
     x: 0
-    y: 0 
+    y: 0
 
-  decorations: full
-  startup_mode: Windowed
-  dynamic_title: true
+font:
+  normal:
+    family: JetBrains Mono
+    style: Regular
 
-## scrolling
-  history: 10000
-  multiplier: 3
+  bold:
+    family: JetBrains Mono
+    style: Bold
 
-## Background opacity
-  opacity: 0.5
+  italic:
+    family: JetBrains Mono
+    style: Italic
 
-## Cursor
+  bold_italic:
+    family: JetBrains Mono
+    style: Bold Italic
+
+  size: 10
+
+  offset:
+    x: 0
+    y: 0
+
 cursor:
-  style:
-    shape: Block
-    blinking: On
+  style: Underline
 
-  unfocused_hollow: true 
-
-## Live config reload
 live_config_reload: true
+colors:
+  # COLORSCHEME: gruvbox_material.yml
+  primary:
+    # low contrast: background: '0x282828'
+    background: "0x282828"
+    foreground: "0xdfbf8e"
+
+  normal:
+    black: "0x665c54"
+    red: "0xea6962"
+    green: "0xa9b665"
+    yellow: "0xe78a4e"
+    blue: "0x7daea3"
+    magenta: "0xd3869b"
+    cyan: "0x89b482"
+    white: "0xdfbf8e"
+
+  bright:
+    black: "0x928374"
+    red: "0xea6962"
+    green: "0xa9b665"
+    yellow: "0xe3a84e"
+    blue: "0x7daea3"
+    magenta: "0xd3869b"
+    cyan: "0x89b482"
+    white: "0xdfbf8e"
+  cursor:
+    text: "0x191622"
+    cursor: "0xf8f8f2"
+
+  selection:
+    background: "#f2f2f2"
+    text: "#403f53"
+  dim:
+    black: "0x000000"
+    red: "0xa90000"
+    green: "0x049f2b"
+    yellow: "0xa3b106"
+    blue: "0x530aba"
+    magenta: "0xbb006b"
+    cyan: "0x433364"
+    white: "0x5f5f5f"

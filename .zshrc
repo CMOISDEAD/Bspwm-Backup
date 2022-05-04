@@ -1,7 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-cat ~/.cache/wal/sequences
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -10,10 +15,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME="spaceship"
+# Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
@@ -43,7 +48,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -72,9 +77,12 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-vi-mode zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-vi-mode)
 
-# Plugins Configs
+# Autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="underline"
+
+# Zsh vim mode
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 source $ZSH/oh-my-zsh.sh
@@ -102,12 +110,23 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim  ~/.zshrc"
-alias ohmyzsh="nvim  ~/.oh-my-zsh"
 
-alias v="nvim"
-alias lvim="~/.local/bin/lvim"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 
-alias l="exa --icons"
+alias ls="exa --icons"
+alias l="exa --icons -abghHliS"
+alias ll="exa --icons -al"
 
-source "/home/camilo/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+alias lf="~/.local/bin/lfub"
+
+alias acs="alacritty-colorscheme -C ~/.config/alacritty/colors -V apply"
+
+# echo ""
+# echo ""
+# echo "Microsoft(R) Windows 95"
+# echo "   (C)Copyright Microsoft Corp 1981-1996."
+# echo ""
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

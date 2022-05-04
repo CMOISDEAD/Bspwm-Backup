@@ -9,16 +9,16 @@ export PATH="${PATH}:$HOME/.config/bspwm/bin"
 ## Get colors from .Xresources -------------------------------#
 xrdb ~/.Xresources.d/colors
 getcolors() {
-	FOREGROUND=$(xrdb -query | grep '*.foreground:'| awk '{print $NF}')
-	BACKGROUND=$(xrdb -query | grep '*.background:'| awk '{print $NF}')
-	BLACK=$(xrdb -query | grep '*.color0:'| awk '{print $NF}')
-	RED=$(xrdb -query | grep '*.color1:'| awk '{print $NF}')
-	GREEN=$(xrdb -query | grep '*.color2:'| awk '{print $NF}')
-	YELLOW=$(xrdb -query | grep '*.color3:'| awk '{print $NF}')
-	BLUE=$(xrdb -query | grep '*.color4:'| awk '{print $NF}')
-	MAGENTA=$(xrdb -query | grep '*.color5:'| awk '{print $NF}')
-	CYAN=$(xrdb -query | grep '*.color6:'| awk '{print $NF}')
-	WHITE=$(xrdb -query | grep '*.color7:'| awk '{print $NF}')
+	FOREGROUND=$(xrdb -query | grep '*foreground:'| awk '{print $NF}')
+	BACKGROUND=$(xrdb -query | grep '*background:'| awk '{print $NF}')
+	BLACK=$(xrdb -query | grep '*color0:'| awk '{print $NF}')
+	RED=$(xrdb -query | grep '*color1:'| awk '{print $NF}')
+	GREEN=$(xrdb -query | grep '*color2:'| awk '{print $NF}')
+	YELLOW=$(xrdb -query | grep '*color3:'| awk '{print $NF}')
+	BLUE=$(xrdb -query | grep '*color4:'| awk '{print $NF}')
+	MAGENTA=$(xrdb -query | grep '*color5:'| awk '{print $NF}')
+	CYAN=$(xrdb -query | grep '*color6:'| awk '{print $NF}')
+	WHITE=$(xrdb -query | grep '*color7:'| awk '{print $NF}')
 }
 getcolors
 
@@ -26,7 +26,7 @@ getcolors
 workspaces() {
 	name=1
 	for monitor in `bspc query -M`; do
-    bspc monitor ${monitor} -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
+    bspc monitor ${monitor} -n "$name" -d 'Main' 'Dev' 'Term' 'Files' 'Docs' 'RSS' 'Media' 'Fix'
     # bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '' ''
 		let name++
 	done
@@ -52,6 +52,7 @@ bspc config focus_follows_pointer true
 
 # remove all rules first
 bspc rule -r *:*
+bspc rule -a Wrapper-2.0 state=floating border=off focus=on
 
 # 1 > terminal
 bspc rule -a Alacritty desktop='^3' follow=on focus=on
@@ -62,6 +63,7 @@ bspc rule -a rofiyt desktop='^5' follow=off focus=off
 # 2 > web
 bspc rule -a qutebrowser desktop='^1' follow=on focus=on
 bspc rule -a chromium desktop='^1' follow=on focus=on
+bspc rule -a brave desktop='^1' follow=on focus=on
 bspc rule -a firefox desktop='^1' follow=on focus=on
 
 # 3 > files
@@ -112,11 +114,13 @@ bspc rule -a stalonetray state=floating manage=off
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
-killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager polybar conky 
+killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager polybar
+pkill redshift
 
 # Misc
 # conky -c ~/.config/conky/conky.conf &
 # xset led 
+redshift &
 
 #setxkbmap es 
 wmname LG3D &
@@ -163,5 +167,6 @@ exec mpd &
 bspcolors
 # bspbar
 ~/.config/polybar/launch.sh --forest
+# xfce4-panel &
 # bspcomp
 bspfloat &
